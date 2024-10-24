@@ -33,6 +33,9 @@ This CDK project uses context to configure deployments. Context can be passed vi
 - **project**: The name of your project. This defaults to the "name" field in `package.json`.
 - **environment**: Defines the environment for deployment. This defaults to "dev".
 - **version**: The version of your project. This defaults to the "version" field in `package.json`.
+- **ecrRepoName**: The name of the ECR repository as `namespace/repo-name`. This defaults to `nginx/nginx`.
+- **ecrImageTag**: The tag of the image to deploy. This defaults to `latest`.
+- **domainName**: The domain name the Cloudwatch RUM will monitor. This defaults to `localhost`.
 
 Example of setting context in `cdk.json`:
 
@@ -41,7 +44,10 @@ Example of setting context in `cdk.json`:
   "context": {
     "project": "my-web-app",
     "environment": "prod",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "ecrRepoName": "user/my-ecr-repo",
+    "ecrImageTag": "6",
+    "domainName": "my-web-app.com"
   }
 }
 ```
@@ -53,13 +59,13 @@ You can deploy each stack individually based on your requirements using the CDK 
 **Deploy the entire project:**
 
 ```sh
-cdk deploy --all
+cdk deploy --all --context ecrRepoName=some/image
 ```
 
 **Deploy a specific stack:**
 
 ```sh
-cdk deploy <stack-name>
+cdk deploy <stack-name> --context project=my-web-app ...
 ```
 
 ## Cleanup

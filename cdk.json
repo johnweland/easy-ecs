@@ -71,7 +71,8 @@
     "@aws-cdk/aws-lambda-nodejs:sdkV3ExcludeSmithyPackages": true,
     "project": "some-project-name",
     "environment": "dev",
-    "ecrImage": "some/ecr-image",
+    "ecrRepoName": "nginx/nginx",
+    "ecrImageTag": "15",
     "domainName": "localhost"
   }
 }

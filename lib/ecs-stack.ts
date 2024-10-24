@@ -73,11 +73,12 @@ export class EcsStack extends Stack {
       cpu: 1024,
     });
 
-    const image = this.node.tryGetContext("ecrImage");
+    const ecrRepoName = this.node.tryGetContext("ecrRepoName");
+    const ecrImageTag = this.node.tryGetContext("ecrImageTag") || "latest";
     const repo = Repository.fromRepositoryName(
       this,
       "EcrRepository",
-      image.tostring(),
+      ecrRepoName,
     );
 
     /**
@@ -89,7 +90,7 @@ export class EcsStack extends Stack {
       "ContainerDefinition",
       {
         containerName: `${environment}-${project}-container`.toLowerCase(),
-        image: ContainerImage.fromEcrRepository(repo, "latest"), // ContainerImage.fromRegistry("nginx"), to pull from a public registry like Docker Hub
+        image: ContainerImage.fromEcrRepository(repo, ecrImageTag.toString()), // ContainerImage.fromRegistry("nginx"), to pull from a public registry like Docker Hub
         taskDefinition,
         environment: {}, // Environment variables
         logging: LogDrivers.awsLogs({
