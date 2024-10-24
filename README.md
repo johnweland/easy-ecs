@@ -1,4 +1,5 @@
-# AWS CDK Project for Simplifying Deployments of Containerized Web Apps
+# Easy ECS
+AWS CDK Project for Simplifying Deployments of Containerized Web Apps
 
 Welcome to the AWS CDK project designed to streamline the process of deploying containerized web applications on AWS using Elastic Container Service (ECS). This project offers a modular system with three separate CloudFormation stacks, each catering to different deployment needs, allowing for flexible and scalable infrastructure.
 
